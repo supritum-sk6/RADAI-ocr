@@ -12,19 +12,19 @@ const config = {
 
 
 
-tesseract
-    .recognize("./images/sample2.jpg", config)
-    .then((text) => {
-        console.log("Result:", text)
-    })
-    .catch((error) => {
-        console.log(error.message)
-    });
+
 
 
 
 app.get("/", function(req, res){
-    res.send("gg");
+    tesseract
+    .recognize("./images/sample2.jpg", config)
+    .then((text) => {
+        res.send(text.split("\n"))
+    })
+    .catch((error) => {
+        console.log(error.message)
+    });
 });
 
 
